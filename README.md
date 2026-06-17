@@ -1,7 +1,7 @@
-## CRM Sales Opportunities Performance Analysis ## 
-## Table of Content ##
+# CRM Sales Opportunities Performance Analysis  
+## Table of Content 
 A Power BI Project Title CRM Sales Opportunities Performance Analysis: Evaluating Team Effectiveness, Agent Productivity, Product Performance, and Revenue Trends
-## Project Scope ##
+## Project Scope 
 This analysis was conducted to evaluate the effectiveness of the sales organization by examining sales opportunities, revenue generation, conversion rates, team performance, agent productivity, product success, and quarterly trends.
 The objective was to identify:
 -	Top-performing sales teams 
@@ -11,7 +11,7 @@ The objective was to identify:
 -	Conversion efficiency across the sales pipeline 
 The analysis provides management with actionable insights to improve revenue growth, optimize sales resources, and enhance overall sales effectiveness.
 ________________________________________
-## Business Problem ##
+## Business Problem 
 Organizations generate numerous sales opportunities, but not all opportunities result in successful conversions.
 Management needs answers to the following questions:
 1.	Which sales teams contribute most to revenue? 
@@ -21,10 +21,10 @@ Management needs answers to the following questions:
 5.	Is revenue improving over time? 
 6.	Where should management focus improvement efforts? 
 ________________________________________
-## Aim of the Project ##
+## Aim of the Project 
 To analyze CRM sales opportunity data and uncover insights that improve sales performance, increase conversion rates, and maximize revenue generation.
 ________________________________________
-## Objectives of the Analysis ##
+## Objectives of the Analysis 
 
 **Revenue Analysis**
 
@@ -48,7 +48,7 @@ ________________________________________
 -	Analyze quarterly performance 
 -	Identify revenue growth patterns 
 ________________________________________
-## Use Case ##
+## Use Case 
 This project provides value to multiple stakeholders across the organization. Each stakeholder uses the dashboard differently to support decision-making.
 
 **1. Board of Directors**
@@ -249,7 +249,7 @@ Analysts use the dashboard to monitor business performance and identify opportun
 **Dashboard Areas Used**
 - Entire Dashboard
 
-**Skills Demonstrated**
+## Skills Demonstrated 
 
 - Data Connection in Power BI
 - Data Profiling
@@ -258,7 +258,7 @@ Analysts use the dashboard to monitor business performance and identify opportun
 - Data Analysis
 - Data Visualization
 
-## Data Source ##
+## Data Source 
 
 The dataset for this project is sourced from [Maven Analytics website](https://app.mavenanalytics.io/datasets?search=cr) designed specifically for practice purposes. The project utilizes a dataset containing information on sales, stores, inventory and products. The dataset used for this analysis was downloaded from Maven Analytics website where datasets are available for practice purpose. The dataset is an Csv file and it consist four main table which are, Account Table, Product Table, Sales Pipeline, and Sales Team table. A fifth table was created which is Calander Table. 
 
@@ -270,3 +270,270 @@ The dataset for this project is sourced from [Maven Analytics website](https://a
 
 **Sales Pipeline** contains information about the company’s sales team, it has 8 columns and 1000 rows which are Opportunity Id, Sales agent, Product, Account, Deal stage, Engage Date, Close Date, Close Value. Opportunity Id is the Unique identifier, Sales agent is the sales agent of the company, Product is the product name, Deal stage is the sales pipeline stage (Prospecting, Engaging, Won / Loss), Engage Date is the date in which the “Engaging” deal stage was initiated, Close date is the Date in which the deal was "Won" or "Lost", Close revenue is the revenue from the deal
 
+## Data Preparation & Cleaning Process 
+
+Before analysis, the dataset was cleaned and transformed in Power BI Power Query.
+
+**Step 1: Data Type Validation**
+
+Ensured:
+
+| Column         | Data Type |
+| -------------- | --------- |
+| Opportunity ID | Text      |
+| Sales Agent    | Text      |
+| Sales Team     | Text      |
+| Product        | Text      |
+| Close Date     | Date      |
+| Close Value    | Decimal   |
+
+
+**Step 2: Remove Duplicate Records**
+
+Based on:
+
+Opportunity ID
+
+Power Query:
+
+Remove Duplicates
+
+Step 3: Handle Missing Values
+
+Checked:
+
+- Sales Agent
+- Product
+- Close Value
+- Close Date
+
+Removed or corrected incomplete records.
+
+**Step 4: Standardize Text Fields**
+
+Applied:
+
+Trim
+Clean
+Capitalize Each Word
+
+To:
+
+Sales Agent
+Sales Team
+Product
+
+**Step 5: Calendar Table Creation**
+
+Created a dedicated Date Table:
+
+Calendar = CALENDAR(
+
+MIN('sales_pipeline'[Close Date]),
+
+MAX('sales_pipeline'[Close Date])
+)
+
+**Step 6: Time Intelligence Columns**
+Year
+Year =
+YEAR(Calendar[Date])
+Quarter
+Quarter =
+"Q" & FORMAT(Calendar[Date],"Q")
+Quarter Sort
+Quarter Number =
+QUARTER(Calendar[Date])
+Year Quarter
+Year Quarter =
+FORMAT(Calendar[Date],"YYYY")
+& " Q" &
+QUARTER(Calendar[Date])
+
+**7. Data Modeling**
+
+Relationship created:
+
+Calendar[Date]
+        ↓
+sales_pipeline[Close Date]
+
+Relationship Type:
+
+One-to-Many
+
+**8. KPI Measures Used**
+Total Revenue
+Revenue =
+SUM('sales_pipeline'[Close Value])
+
+Measures total value of successfully closed opportunities.
+
+Total Opportunities
+Total Opportunities =
+COUNT('sales_pipeline'[Opportunity ID])
+
+Measures total sales opportunities created.
+
+Won Deals
+Won Deals =
+CALCULATE(
+COUNT('sales_pipeline'[Opportunity ID]),
+'sales_pipeline'[Deal Stage]="Won"
+)
+
+Measures successfully converted opportunities.
+
+Lost Deals
+Lost Deals =
+CALCULATE(
+COUNT('sales_pipeline'[Opportunity ID]),
+'sales_pipeline'[Deal Stage]="Lost"
+)
+
+Measures unsuccessful opportunities.
+
+Win Rate
+Win Rate =
+DIVIDE(
+[Won Deals],
+[Won Deals] + [Lost Deals]
+)
+
+Measures conversion effectiveness.
+
+Agent Ranking
+Agent Rank =
+RANKX(
+ALLSELECTED('sales_pipeline'[Sales Agent]),
+[Revenue],
+,
+DESC,
+DENSE
+)
+
+Ranks agents by revenue generated.
+
+**9. Dashboard Components**
+Executive KPI Cards
+
+Displayed:
+
+Total Revenue
+Total Opportunities
+Won Deals
+Lost Deals
+Win Rate
+
+Purpose:
+
+Provides an instant overview of sales performance.
+
+Revenue Trend Analysis
+
+Chart:
+
+Line Chart
+
+Measures:
+
+Revenue by Month
+Revenue by Quarter
+
+Purpose:
+
+Identify growth and seasonal patterns.
+
+Sales Team Performance
+
+Chart:
+
+Clustered Bar Chart
+
+Metrics:
+
+Revenue
+Win Rate
+
+Purpose:
+
+Compare team effectiveness.
+
+Agent Performance
+
+Charts:
+
+Top 10 Agents
+Bottom 10 Agents
+
+Purpose:
+
+Identify top performers and coaching opportunities.
+
+Product Analysis
+
+Charts:
+
+Revenue by Product
+Win Rate by Product
+
+Purpose:
+
+Determine strongest and weakest products.
+
+**10. Key Findings**
+Finding 1: Revenue Concentration
+
+Revenue is concentrated among a small number of sales teams.
+
+This indicates:
+
+Certain teams consistently outperform others.
+Revenue dependency exists on a limited number of teams.
+Business Risk
+
+Heavy reliance on a few teams creates operational risk.
+
+Finding 2: Agent Performance Gap
+
+Top-performing agents contribute significantly more revenue than lower-performing agents.
+
+Observation:
+
+Revenue generation is unevenly distributed.
+High-performing agents demonstrate stronger conversion skills.
+Business Impact
+
+Training opportunities exist for lower-performing agents.
+
+Finding 3: Product Performance Differences
+
+Certain products consistently achieve higher win rates.
+
+Possible reasons:
+
+Better market demand
+Easier value proposition
+Stronger pricing strategy
+Business Impact
+
+Marketing and sales focus should prioritize these products.
+
+Finding 4: Opportunity Conversion
+
+Win rate analysis indicates a percentage of opportunities fail to convert.
+
+Potential causes:
+
+Poor qualification process
+Pricing concerns
+Competitive pressure
+Finding 5: Quarterly Trends
+
+Revenue trends reveal periods of growth and slowdown.
+
+Understanding these patterns helps management:
+
+Forecast future revenue
+Allocate resources efficiently
+Prepare for seasonal fluctuations
