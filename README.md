@@ -1,31 +1,33 @@
 # CRM Sales Opportunities Performance Analysis  
 
 ## Table of Content
-[Project Scope]()
+[Project Scope](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#project-scope)
 
-Aim of The Project
+[Bussiness Problem](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#business-problem)
 
-Objective of The Project
+[Aim of The Project](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#aim-of-the-project)
 
-Use Case
+[Objective of The Project](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#objectives-of-the-analysis)
 
-Skill Demonstrated
+[Use Case](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#use-case)
 
-Data Source
+[Skill Demonstrated](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#skills-demonstrated)
 
-Data Preparation and Cleaning 
+[Data Source](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#data-source)
 
-Data Modelling 
+[Data Preparation and Cleaning](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#data-preparation--cleaning-process) 
 
-Data Analysis and Insight 
+[Data Modelling](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#data-modeling) 
 
-Data Visualization
+[Data Analysis and Insight]() 
 
-Recommendations
+[Data Visualization](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#data-analysis-and-insight)
 
-Business Impact
+[Recommendations](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#recommendations)
 
-conclusion
+[Business Impact](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#business-impact)
+
+[conclusion](https://github.com/GideonAdon/CRM-Sales-Opportunities-Performance-Analysis/edit/main/README.md#conclusion)
 
 A Power BI Project Title CRM Sales Opportunities Performance Analysis: Evaluating Team Effectiveness, Agent Productivity, Product Performance, and Revenue Trends
 ## Project Scope 
